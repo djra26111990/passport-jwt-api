@@ -1,8 +1,8 @@
-const passport = require('passport');
+import passport from 'passport'
 const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const User = require('../models/user.model');
-require('dotenv').config();
+import {} from 'dotenv/config'
 
 const secretKey = process.env.SECRET_AUTH_KEY;
 

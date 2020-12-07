@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const TodoSchema = new mongoose.Schema({
     name: {
