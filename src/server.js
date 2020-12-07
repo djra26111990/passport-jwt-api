@@ -1,7 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose'
-import userRouter from './src/routes/user.route'
+import userRouter from './routes/user.route'
 import {} from 'dotenv/config'
 const app = express();
 
