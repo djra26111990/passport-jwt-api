@@ -34,3 +34,7 @@ export const adminSection = (req, res) => {
 export const authStatus = (req, res) => {
     return opUsers.authenticated(req, res);
 }
+
+export const githubAuth = (req, res, next) => {
+    return opUsers.githubAuth(req, res, next);
+}

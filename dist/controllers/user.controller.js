@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.authStatus = exports.adminSection = exports.getTodos = exports.createTodo = exports.logoutUser = exports.logoutUsers = exports.loginUser = exports.createUser = undefined;
+exports.githubAuth = exports.authStatus = exports.adminSection = exports.getTodos = exports.createTodo = exports.logoutUser = exports.logoutUsers = exports.loginUser = exports.createUser = undefined;
 
 var _user = require('../handlers/user.handlers');
 
@@ -39,4 +39,8 @@ var adminSection = exports.adminSection = function adminSection(req, res) {
 
 var authStatus = exports.authStatus = function authStatus(req, res) {
     return opUsers.authenticated(req, res);
+};
+
+var githubAuth = exports.githubAuth = function githubAuth(req, res, next) {
+    return opUsers.githubAuth(req, res, next);
 };

@@ -32,4 +32,8 @@ userRouter.get('/admin', _passport2.default.authenticate('jwt', { session: false
 
 userRouter.get('/authenticated', _passport2.default.authenticate('jwt', { session: false }), _user.authStatus);
 
+userRouter.get('/auth/github', _passport2.default.authenticate('github'));
+
+userRouter.get('/auth/github/callback', _user.githubAuth);
+
 module.exports = userRouter;

@@ -80,6 +80,8 @@ export class repository {
 
   logoutUsers(req, res) {
     res.clearCookie('access_token')
+    req.logout();
+    req.session = null;
     res.json({ user: { username: '', role: '' }, success: true })
   }
 
@@ -151,4 +153,21 @@ export class repository {
     const { username, role } = req.user
     res.status(200).json({ isAuthenticated: true, user: { username, role } })
   }
+
+  githubAuth(req, res, next) {
+   (error, user, info) => {
+        if (error) {
+            const statusCode = error.statusCode || 500;
+            return res.status(statusCode).json(error)
+        }
+        req.login(user, (error) => {
+            if (error) {
+                const statusCode = error.statusCode || 500;
+                return res.status(statusCode).json(error)
+            }
+            return res.redirect('/')
+        })
+    }
+    (req, res, next)
+}
 }

@@ -105,6 +105,8 @@ var repository = exports.repository = function () {
     key: 'logoutUsers',
     value: function logoutUsers(req, res) {
       res.clearCookie('access_token');
+      req.logout();
+      req.session = null;
       res.json({ user: { username: '', role: '' }, success: true });
     }
   }, {
@@ -171,6 +173,24 @@ var repository = exports.repository = function () {
           role = _req$user2.role;
 
       res.status(200).json({ isAuthenticated: true, user: { username: username, role: role } });
+    }
+  }, {
+    key: 'githubAuth',
+    value: function githubAuth(req, res, next) {
+      (function (error, user, info) {
+        if (error) {
+          var statusCode = error.statusCode || 500;
+          return res.status(statusCode).json(error);
+        }
+        req.login(user, function (error) {
+          if (error) {
+            var _statusCode = error.statusCode || 500;
+            return res.status(_statusCode).json(error);
+          }
+          return res.redirect('/todos');
+        });
+      });
+      req, res, next;
     }
   }]);
 
